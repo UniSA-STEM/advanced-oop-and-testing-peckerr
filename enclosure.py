@@ -8,15 +8,29 @@ This is my own work as defined by the University's Academic Integrity Policy.
 '''
 
 class Enclosure:
-    def __init__(self, size: int, environment_type: str, animal_type: str):
-        if size < 0:
-            raise ValueError('size must be positive')
 
+    ENVIRONMENTS = ['Aquatic', 'Tropical', 'Snow', 'Desert', 'Jungle']
+
+    def __init__(self, enclosure_name, size, environment_type, clean_level):
+        if not isinstance(enclosure_name, str):
+            raise ValueError('Enclosure name must be a string.')
+        if not isinstance(size, int) or size < 0:
+            raise ValueError('Enclosure size must be a positive integer.')
+        if environment_type not in self.ENVIRONMENTS:
+            raise ValueError(f'Enclosure environment type must be one of: {self.ENVIRONMENTS}')
+        if not isinstance(clean_level, int) or not 0 <= clean_level <= 100:
+            raise ValueError('Clean level must be an integer between 0 and 100.')
+
+        self._enclosure_name = enclosure_name
         self._size = size
         self._environment_type = environment_type
-        self._animal_type = animal_type
+        self._clean_level = clean_level
         self._animals = []
-        self._clean_level = 100
+        self._allowed_species = None
+
+    @property
+    def enclosure_name(self):
+        return self._enclosure_name
 
     @property
     def size(self):
@@ -27,26 +41,14 @@ class Enclosure:
         return self._environment_type
 
     @property
-    def animal_type(self):
-        return self._animal_type
-
-    @property
-    def animals(self):
-        return self._animals
-
-    @property
-    def clean_level(self):
+    def cleanliness_level(self):
         return self._clean_level
 
     @property
-    def animals_housed(self):
+    def animals(self):
+        return self._animals.copy()
+
+    @property
+    def animal_count(self):
         return len(self._animals)
-
-    def is_full(self):
-        return self.animals_housed >= self.__size
-
-    def is_liveable(self, animal):
-        return self._size == 0
-
-
 
