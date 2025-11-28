@@ -31,6 +31,7 @@ class Animal(ABC):
         self._health_records = []
         self._environmental_type = environmental_type
         self._at_vet = False
+        self._last_fed = None
 
     # Properties for getters
     @property
@@ -51,19 +52,28 @@ class Animal(ABC):
 
     @property
     def health_records(self):
-        return self._health_records
+        return self._health_records.copy()
 
     @property
     def environmental_type(self):
         return self._environmental_type
+
+    @property
+    def at_vet(self):
+        return self._at_vet
 
     # Methods for subclasses
     @abstractmethod
     def make_sound(self):
         pass
 
+    @abstractmethod
+    def get_category(self):
+        pass
+
     # General methods
     def eat(self):
+        self._last_fed = datetime.now()
         return f'{self._name} the {self._species} is sticking to their diet and eating {self._dietary_needs}.'
 
     def sleep(self):
@@ -79,17 +89,8 @@ class Animal(ABC):
             'treatment': treatment
         })
 
-    def get_health_report(self):
-        if not self._health_records:
-            return f'{self._name} is healthy.'
-        report = f'Health Report: {self._name}\n'
-        for record in self._health_records:
-            report += f' - {record['description']} ({record['severity']}) {record["treatment"]}\n'
-        return report
-
-    def add_to_enclosure(self, enclosure):
-        if not isinstance()
-
+    def __str__(self):
+        return f'{self._name} the {self._species} is {self._age} years old.'
 
 
 
