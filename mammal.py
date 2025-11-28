@@ -1,6 +1,6 @@
 '''
 File: mammal.py
-Description: A brief description of this Python module.
+Description: Subclass of animal, for mammals.
 Author: Thomas Cochrane
 ID: 110466784
 Username: COCTY007

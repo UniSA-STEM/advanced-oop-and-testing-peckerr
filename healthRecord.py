@@ -1,3 +1,12 @@
+'''
+File: healthRecord.py
+Description: Health records of animals.
+Author: Thomas Cochrane
+ID: 110466784
+Username: COCTY007
+This is my own work as defined by the University's Academic Integrity Policy.
+'''
+
 from datetime import datetime
 
 class HealthRecord:

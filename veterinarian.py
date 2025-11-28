@@ -1,12 +1,21 @@
 from staff import Staff
 from healthRecord import HealthRecord
 
+'''
+File: veterinarian.py
+Description: Subclass of Staff, for vets.
+Author: Thomas Cochrane
+ID: 110466784
+Username: COCTY007
+This is my own work as defined by the University's Academic Integrity Policy.
+'''
+
 class Veterinarian(Staff):
     def __init__(self, staff_id, name):
         super().__init__(staff_id, name, 'Veterinarian')
 
     def health_check(self, animal):
-        unresolved_problems = [issue for issue in animal.health_records if not issue.resolved]
+        unresolved_problems = [issue for issue in animal.health_records if not issue.get('resolved', True)]
 
         if unresolved_problems:
             health_state = f'{animal.name} has unresolved health issues.'
@@ -27,10 +36,18 @@ class Veterinarian(Staff):
                 f'{description} ({severity})')
 
     def treat_animal(self, animal, health_record):
-        if health_record in animal.health_records:
-            health_record.is_healed()
-            return f'Veterinarian: {self._name} - Treated {animal.name} for {health_record.description}.'
-        return f'No health record for {animal.name}'
+        if isinstance(health_record, int):
+            index = health_record
+            if 0 <= index < len(animal.health_records):
+                animal.health_records[index]['resolved'] = True
+                return f'Veterinarian: {self._name} - Treated {animal.name} for {animal.health_records[index]["description"]}.'
+
+            for i, record in enumerate(animal.health_records):
+                if record['description'] == health_record['description']:
+                    animal.health_records[i]['resolved'] = True
+                    return f'Veterinarian: {self._name} - Treated {animal.name} for {health_record["description"]}.'
+
+        return f'No matching health record for {animal.name}'
 
     def work(self):
         tasks = []

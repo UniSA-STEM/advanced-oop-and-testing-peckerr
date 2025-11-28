@@ -1,6 +1,6 @@
 '''
 File: enclosure.py
-Description: A brief description of this Python module.
+Description: Represents animal enclosures.
 Author: Thomas Cochrane
 ID: 110466784
 Username: COCTY007

@@ -1,6 +1,6 @@
 '''
 File: bird.py
-Description: A brief description of this Python module.
+Description: Subclass of Animal, for birds.
 Author: Thomas Cochrane
 ID: 110466784
 Username: COCTY007

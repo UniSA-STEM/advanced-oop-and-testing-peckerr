@@ -1,6 +1,6 @@
 '''
 File: animal.py
-Description: A brief description of this Python module.
+Description: Abstract base class for all animals.
 Author: Thomas Cochrane
 ID: 110466784
 Username: COCTY007

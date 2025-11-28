@@ -1,6 +1,6 @@
 '''
 File: staff.py
-Description: A brief description of this Python module.
+Description: Abstract base class for staff members.
 Author: Thomas Cochrane
 ID: 110466784
 Username: COCTY007
@@ -52,7 +52,7 @@ class Staff(ABC):
             self._assigned_enclosures.append(enclosure)
 
     @abstractmethod
-    def perform_role(self):
+    def work(self):
         pass
 
     def __str__(self):

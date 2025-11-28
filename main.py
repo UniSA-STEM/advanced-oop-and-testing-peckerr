@@ -1,6 +1,6 @@
 '''
 File: main.py
-Description: A brief description of this Python module.
+Description: Walkthrough of the zoo.
 Author: Thomas Cochrane
 ID: 110466784
 Username: COCTY007
@@ -19,19 +19,53 @@ from veterinarian import Veterinarian
 from enclosure import Enclosure
 from healthRecord import HealthRecord
 
-lion = Mammal('Beefcake', 'Lion', 3, 'Carnivore', 'Jungle')
+tiger = Mammal('Beefcake', 'tiger', 3, 'Carnivore', 'Jungle')
 eagle = Bird('Drilla', 'Wedge-Tailed Eagle', 2, 'Carnivore', 'Tropical')
 snake = Reptile('Princely', 'Tiger Snake', 7, 'Carnivore', 'Jungle')
 
-# Enclosure management
-jungle_encl = Enclosure('Jungle Zone', 1500, 'Jungle', 60)
-jungle_encl.add_animal(lion)
-jungle_encl.add_animal(snake)
-print(f'Enclosure: {jungle_encl}')
+print('Created animals:')
+print(f'- {tiger}')
+print(f'- {eagle}')
+print(f'- {snake.make_sound()}\n')  # Polymorphism demo
 
-# Staff interactions
-zk = Zookeeper('ZK01', 'Chancy')
-vet = Veterinarian('VET01', 'Dr. Frodo')
-zk.feed_animal(lion)
-vet.health_check(lion)
-print(zk.work())
+# Enclosure management with environment/species validation
+jungle_encl = Enclosure('Jungle Zone', 1500, 'Jungle', 60)
+tropical_encl = Enclosure('Bird Sanctuary', 800, 'Tropical', 90)
+
+jungle_encl.add_animal(tiger)
+tropical_encl.add_animal(eagle)
+
+print('Enclosures populated:')
+print(f'Jungle: {jungle_encl} (Cleanliness: {jungle_encl.cleanliness_level}%)')
+print(f'Tropical: {tropical_encl}\n')
+
+# Staff creation and animal assignments (demonstrates Staff inheritance)
+zk1 = Zookeeper('ZK001', 'Bob')
+zk2 = Zookeeper('ZK002', 'Alice')
+vet = Veterinarian('VET001', 'Dr. Jones')
+
+# Assign animals to staff for work() method demonstration
+zk1.assign_animal(tiger)  # Assuming Staff has this method
+zk2.assign_animal(eagle)
+zk2.assign_enclosure(tropical_encl)
+vet.assign_animal(tiger)
+
+# Health record demonstration
+tiger.add_health_record('Sore paw', 'medium', 'Antibiotics')
+print(f'{tiger.name} health records: {len(tiger.health_records)}\n')
+
+# Execute daily operations
+print('=== Daily Staff Operations ===')
+print(zk1.work())
+print('\n' + zk2.work())
+print('\n' + vet.work())
+
+# Veterinary treatment workflow
+print('\n=== Medical Treatment Demo ===')
+print(vet.treat_animal(tiger, tiger.health_records[0]))
+print(f'Post-treatment check: {vet.health_check(tiger)}')
+
+# Zookeeper maintenance
+print(f'\nEnclosure cleaned: {zk2.clean_enclosure(tropical_encl)}')
+
+print('\n=== Demo Complete ===')
