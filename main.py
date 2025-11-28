@@ -19,6 +19,8 @@ from veterinarian import Veterinarian
 from enclosure import Enclosure
 from healthRecord import HealthRecord
 
+print('=== Demo Start ===')
+
 tiger = Mammal('Beefcake', 'tiger', 3, 'Carnivore', 'Jungle')
 eagle = Bird('Drilla', 'Wedge-Tailed Eagle', 2, 'Carnivore', 'Tropical')
 snake = Reptile('Princely', 'Tiger Snake', 7, 'Carnivore', 'Jungle')
@@ -26,7 +28,7 @@ snake = Reptile('Princely', 'Tiger Snake', 7, 'Carnivore', 'Jungle')
 print('Created animals:')
 print(f'- {tiger}')
 print(f'- {eagle}')
-print(f'- {snake.make_sound()}\n')  # Polymorphism demo
+print(f'- {snake.make_sound()}\n')
 
 # Enclosure management with environment/species validation
 jungle_encl = Enclosure('Jungle Zone', 1500, 'Jungle', 60)
@@ -39,13 +41,13 @@ print('Enclosures populated:')
 print(f'Jungle: {jungle_encl} (Cleanliness: {jungle_encl.cleanliness_level}%)')
 print(f'Tropical: {tropical_encl}\n')
 
-# Staff creation and animal assignments (demonstrates Staff inheritance)
+# Staff creation and animal assignments
 zk1 = Zookeeper('ZK001', 'Bob')
 zk2 = Zookeeper('ZK002', 'Alice')
 vet = Veterinarian('VET001', 'Dr. Jones')
 
 # Assign animals to staff for work() method demonstration
-zk1.assign_animal(tiger)  # Assuming Staff has this method
+zk1.assign_animal(tiger)
 zk2.assign_animal(eagle)
 zk2.assign_enclosure(tropical_encl)
 vet.assign_animal(tiger)

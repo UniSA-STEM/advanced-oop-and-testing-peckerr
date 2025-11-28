@@ -65,10 +65,12 @@ class Animal(ABC):
     # Methods for subclasses
     @abstractmethod
     def make_sound(self):
+        '''Each animal has unique sound'''
         pass
 
     @abstractmethod
     def get_category(self):
+        '''Return the category of the animal'''
         pass
 
     # General methods
@@ -80,8 +82,9 @@ class Animal(ABC):
         return f'{self._name} the {self._species} is sleeping.'
 
     def add_health_record(self, description: str, severity: str, treatment: str = ''):
+        '''Add a health record and update treatment status'''
         if severity not in ['low', 'medium', 'high']:
-            raise ValueError('Severity must be one of "low", "medium", "high".')
+            raise ValueError('Severity must be low, medium, high.')
         self._health_records.append({
             'description': description,
             'date': datetime.now(),

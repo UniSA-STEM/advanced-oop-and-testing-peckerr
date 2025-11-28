@@ -1,6 +1,3 @@
-from staff import Staff
-from healthRecord import HealthRecord
-
 '''
 File: veterinarian.py
 Description: Subclass of Staff, for vets.
@@ -9,6 +6,9 @@ ID: 110466784
 Username: COCTY007
 This is my own work as defined by the University's Academic Integrity Policy.
 '''
+
+from staff import Staff
+from healthRecord import HealthRecord
 
 class Veterinarian(Staff):
     def __init__(self, staff_id, name):
