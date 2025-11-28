@@ -52,3 +52,29 @@ class Enclosure:
     def animal_count(self):
         return len(self._animals)
 
+    def add_animal(self, animal):
+        if animal.environment_type != self._environment_type:
+            raise ValueError(f'{animal.name} needs to be in the {self._environment_type} enclosure.')
+
+        if self._allowed_species is None:
+            self._allowed_species = animal.species
+        elif animal.species != self._allowed_species:
+            raise ValueError(f'{animal.species} cannot mix with {self._allowed_species}.')
+        self._animals.append(animal)
+        return True
+
+    def remove_animal(self, animal):
+        if animal in self._animals:
+            self._animals.remove(animal)
+            if len(self._animals) == 0:
+                self._animals = None
+            return True
+        return False
+
+    def clean(self):
+        self._clean_level = 100
+        return f'Enclosure {self._enclosure_name} has been cleaned.'
+
+    def __str__(self):
+        return f'Enclosure {self._enclosure_name}({self._environment_type}) contains {len(self._animals)} animals.'
+

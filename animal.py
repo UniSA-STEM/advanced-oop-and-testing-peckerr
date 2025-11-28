@@ -11,7 +11,7 @@ from abc import ABC, abstractmethod
 from datetime import datetime
 
 class Animal(ABC):
-    def _init_(self, name, species, age, dietary_needs, envrionmental_type):
+    def _init_(self, name, species, age, dietary_needs, envrionment_type):
         # Validation
         if not isinstance(name, str) or not name.strip():
             raise ValueError('Name must be a non-empty string.')
@@ -21,7 +21,7 @@ class Animal(ABC):
             raise ValueError('Age must be a non-negative integer.')
         if not isinstance(dietary_needs, str) or not dietary_needs.strip():
             raise ValueError('Dietary needs must be a non-empty string.')
-        if not isinstance(envrionmental_type, str) or not envrionmental_type.strip():
+        if not isinstance(envrionment_type, str) or not envrionment_type.strip():
             raise ValueError('Environment type must be a non-empty string.')
 
         self._name = name.strip()
@@ -29,7 +29,7 @@ class Animal(ABC):
         self._age = age
         self._dietary_needs = dietary_needs.strip()
         self._health_records = []
-        self._environmental_type = environmental_type
+        self._environment_type = environment_type
         self._at_vet = False
         self._last_fed = None
 
@@ -55,8 +55,8 @@ class Animal(ABC):
         return self._health_records.copy()
 
     @property
-    def environmental_type(self):
-        return self._environmental_type
+    def environment_type(self):
+        return self._environment_type
 
     @property
     def at_vet(self):
