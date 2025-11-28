@@ -6,6 +6,7 @@ ID: 110466784
 Username: COCTY007
 This is my own work as defined by the University's Academic Integrity Policy.
 '''
+from abc import ABC, abstractmethod
 
 class Staff(ABC):
     def __init__(self, staff_id, name, role):
