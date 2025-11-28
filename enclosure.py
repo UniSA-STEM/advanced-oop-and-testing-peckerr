@@ -12,9 +12,41 @@ class Enclosure:
         if size < 0:
             raise ValueError('size must be positive')
 
-        self.__size = size
-        self.__environment_type = environment_type
-        self.__animal_type = animal_type
-        self.__animals = []
-        self.__clean_level = 100
+        self._size = size
+        self._environment_type = environment_type
+        self._animal_type = animal_type
+        self._animals = []
+        self._clean_level = 100
+
+    @property
+    def size(self):
+        return self._size
+
+    @property
+    def environment_type(self):
+        return self._environment_type
+
+    @property
+    def animal_type(self):
+        return self._animal_type
+
+    @property
+    def animals(self):
+        return self._animals
+
+    @property
+    def clean_level(self):
+        return self._clean_level
+
+    @property
+    def animals_housed(self):
+        return len(self._animals)
+
+    def is_full(self):
+        return self.animals_housed >= self.__size
+
+    def is_liveable(self, animal):
+        return self._size == 0
+
+
 

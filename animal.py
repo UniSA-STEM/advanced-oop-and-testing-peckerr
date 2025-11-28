@@ -11,7 +11,7 @@ from abc import ABC, abstractmethod
 from datetime import datetime
 
 class Animal(ABC):
-    def __init__(self, name, species, age, dietary_needs, envrionmental_type):
+    def _init_(self, name, species, age, dietary_needs, envrionmental_type):
         # Validation
         if not isinstance(name, str) or not name.strip():
             raise ValueError('Name must be a non-empty string.')
@@ -24,38 +24,38 @@ class Animal(ABC):
         if not isinstance(envrionmental_type, str) or not envrionmental_type.strip():
             raise ValueError('Environment type must be a non-empty string.')
 
-        self.__name = name.strip()
-        self.__species = species.strip()
-        self.__age = age
-        self.__dietary_needs = dietary_needs.strip()
-        self.__health_records = []
-        self.__environmental_type = environmental_type
-        self.__at_vet = False
+        self._name = name.strip()
+        self._species = species.strip()
+        self._age = age
+        self._dietary_needs = dietary_needs.strip()
+        self._health_records = []
+        self._environmental_type = environmental_type
+        self._at_vet = False
 
     # Properties for getters
     @property
     def name(self):
-        return self.__name
+        return self._name
 
     @property
     def species(self):
-        return self.__species
+        return self._species
 
     @property
     def age(self):
-        return self.__age
+        return self._age
 
     @property
     def dietary_needs(self):
-        return self.__dietary_needs
+        return self._dietary_needs
 
     @property
     def health_records(self):
-        return self.__health_records
+        return self._health_records
 
     @property
     def environmental_type(self):
-        return self.__environmental_type
+        return self._environmental_type
 
     # Methods for subclasses
     @abstractmethod
@@ -64,15 +64,15 @@ class Animal(ABC):
 
     # General methods
     def eat(self):
-        return f'{self.__name} the {self.__species} is sticking to their diet and eating {self.__dietary_needs}.'
+        return f'{self._name} the {self._species} is sticking to their diet and eating {self._dietary_needs}.'
 
     def sleep(self):
-        return f'{self.__name} the {self.__species} is sleeping.'
+        return f'{self._name} the {self._species} is sleeping.'
 
     def add_health_record(self, description: str, severity: str, treatment: str = ''):
         if severity not in ['low', 'medium', 'high']:
             raise ValueError('Severity must be one of "low", "medium", "high".')
-        self.__health_records.append({
+        self._health_records.append({
             'description': description,
             'date': datetime.now(),
             'severity': severity,
@@ -80,10 +80,10 @@ class Animal(ABC):
         })
 
     def get_health_report(self):
-        if not self.__health_records:
-            return f'{self.__name} is healthy.'
-        report = f'Health Report: {self.__name}\n'
-        for record in self.__health_records:
+        if not self._health_records:
+            return f'{self._name} is healthy.'
+        report = f'Health Report: {self._name}\n'
+        for record in self._health_records:
             report += f' - {record['description']} ({record['severity']}) {record["treatment"]}\n'
         return report
 

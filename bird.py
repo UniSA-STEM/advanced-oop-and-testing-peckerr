@@ -11,4 +11,4 @@ from animal import Animal
 
 class Bird(Animal):
     def make_sound(self) -> str:
-        return f'{self.__name} makes a bird noise'
+        return f'{self._name} makes a bird noise'
